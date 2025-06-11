@@ -4,18 +4,25 @@ struct ContentView: View {
     @State private var path = NavigationPath()
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack(path: $path) {
+            VStack(spacing: 20) {
+                Button("Basic Pinned Header") {
+                    path.append(Route.basicPinnedHeader)
+                }
+                .buttonStyle(.borderedProminent)
+                
+            }
+            .navigationDestination(for: Route.self) { route in
+                switch route {
+                case .basicPinnedHeader: BasicPinnedHeader()
+                }
+            }
         }
-        .padding()    }
+    }
 }
 
 enum Route: Hashable {
     case basicPinnedHeader
-    case insetPinnedHeader
 }
 
 #Preview {
