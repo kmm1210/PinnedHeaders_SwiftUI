@@ -11,10 +11,16 @@ struct ContentView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 
+                Button("Inset Pinned Header") {
+                    path.append(Route.insetPinnedHeader)
+                }
+                .buttonStyle(.borderedProminent)
+                
             }
             .navigationDestination(for: Route.self) { route in
                 switch route {
                 case .basicPinnedHeader: BasicPinnedHeader()
+                case .insetPinnedHeader: InsetPinnedHeader()
                 }
             }
         }
@@ -23,6 +29,7 @@ struct ContentView: View {
 
 enum Route: Hashable {
     case basicPinnedHeader
+    case insetPinnedHeader
 }
 
 #Preview {
