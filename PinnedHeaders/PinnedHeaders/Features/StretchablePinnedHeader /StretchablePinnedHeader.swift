@@ -52,7 +52,7 @@ struct StretchablePinnedHeader: View {
         .frame(height: defaultHeight + max(0, -offset))
         .frame(maxWidth: .infinity)
         .background(
-            RoundedRectangle(cornerRadius: 8).fill(.cyan.opacity(0.8))
+            RoundedRectangle(cornerRadius: 8).fill(.cyan)
         )
         .padding(.horizontal, 32)
     }

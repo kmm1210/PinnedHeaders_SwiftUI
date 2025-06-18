@@ -17,7 +17,9 @@ struct TransformablePinnedHeader: View {
                     .padding()
                     .frame(height: defaultHeight, alignment: .bottom)
                     .frame(maxWidth: .infinity)
-                    .background(Rectangle().fill(.white).fill(.cyan.opacity(0.4)))
+                    .background(
+                        Rectangle().fill(.white).fill(.cyan.opacity(0.4))
+                    )
                 
             } else {
                 Color.clear
@@ -30,11 +32,11 @@ struct TransformablePinnedHeader: View {
                 }
             }
         }
-        .onScrollGeometryChange(for: CGFloat.self) { geometry in
+        .onScrollGeometryChange(for: CGFloat.self, of: { geometry in
             return geometry.contentOffset.y + geometry.contentInsets.top
-        } action: { _, new in
-            self.offset = new
-        }
+        }, action: { oldValue, newValue in
+            self.offset = newValue
+        })
         .overlay(alignment: .top, content: {
             if defaultHeight - offset <= minHeight {
                 headerView()
@@ -55,7 +57,7 @@ struct TransformablePinnedHeader: View {
             }
             
         })
-        
+        .toolbarBackground(.hidden, for: .navigationBar)
     }
     
     private func headerView() -> some View {

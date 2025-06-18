@@ -21,12 +21,24 @@ struct ContentView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 
+                Button("Transformable Pinned Header") {
+                    path.append(Route.transformablePinnedHeader)
+                }
+                .buttonStyle(.borderedProminent)
+                
+                Button("Transformable Pinned Header2") {
+                    path.append(Route.transformablePinnedHeader2)
+                }
+                .buttonStyle(.borderedProminent)
+                
             }
             .navigationDestination(for: Route.self) { route in
                 switch route {
                 case .basicPinnedHeader: BasicPinnedHeader()
                 case .insetPinnedHeader: InsetPinnedHeader()
                 case .stretchablePinnedHeader: StretchablePinnedHeader()
+                case .transformablePinnedHeader: TransformablePinnedHeader()
+                case .transformablePinnedHeader2: TransformablePinnedHeader2()
                 }
             }
         }
@@ -37,6 +49,8 @@ enum Route: Hashable {
     case basicPinnedHeader
     case insetPinnedHeader
     case stretchablePinnedHeader
+    case transformablePinnedHeader
+    case transformablePinnedHeader2
 }
 
 #Preview {

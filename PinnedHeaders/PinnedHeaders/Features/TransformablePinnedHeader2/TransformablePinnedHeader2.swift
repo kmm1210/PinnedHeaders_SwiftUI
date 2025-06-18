@@ -42,11 +42,11 @@ struct TransformablePinnedHeader2: View {
                     }
                 }
             }
-            .onScrollGeometryChange(for: CGFloat.self) { geometry in
+            .onScrollGeometryChange(for: CGFloat.self, of: { geometry in
                 return geometry.contentOffset.y + geometry.contentInsets.top
-            } action: { _, new in
-                self.offset = new
-            }
+            }, action: { oldValue, newValue in
+                self.offset = newValue
+            })
             
             if showMinimizedHeader {
                 baseHeaderView()
@@ -56,11 +56,13 @@ struct TransformablePinnedHeader2: View {
                     .padding()
                     .frame(height: minHeight)
                     .frame(maxWidth: .infinity)
-                    .background(Rectangle().fill(.white).fill(.blue.opacity(0.4)).ignoresSafeArea())
+                    .background(
+                        Rectangle().fill(.white).fill(.blue.opacity(0.4)).ignoresSafeArea()
+                    )
                 
             }
         }
-        
+        .toolbarBackground(.hidden, for: .navigationBar)
     }
     
     private func baseHeaderView() -> some View {
